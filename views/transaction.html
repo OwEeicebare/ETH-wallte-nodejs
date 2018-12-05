@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>创建钱包</title>
+    <script src="js/lib/jquery-3.3.1.min.js"></script>
+    <script src="/js/lib/jquery.url.js"></script>
+    <script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
+    <script src="js/lib/jqurey.from.js"></script>
+    <script src="/js/wallet.js"></script>
+</head>
+<body>
+<div id="nav"></div>
+<script>
+    $("#nav").load("html/nav.html")
+</script>
+<div id="main">
+    <h1>发送以太或者token代币</h1>
+    <div id="transaction-first">
+
+        <input type="radio" id="unlock-account-kype-keystore" name="unlocktype" value="1">
+        <label for="unlock-account-kype-keystore">keystore</label>
+        <br>
+        <input type="radio" id="unlock-account-kype-privatekey" name="unlocktype" value="2">
+        <label for="unlock-account-kype-privatekey">privitkey</label>
+
+        <div id="unlock-account-keystore" style="display: none">
+                <h3>请选择你的keystore文件</h3>
+
+            <input type="file" id="unlock-accoutn-file">
+            <input type="password" id="unlockaccountpassword">
+            <button onclick="unlockAccountWithkeystore()">解锁</button>
+        </div>
+        <div id="unlock-account-privatekey" style="display: none">
+            <h3>请输入你的私钥</h3>
+            <textarea id="input-privatekey" rows="3"></textarea>
+            <br>
+
+            <button onclick="unlockAccountWithPrivatekey()">解锁</button>
+        </div>
+    </div>
+    <div id="transaction-second" style="display: none">
+        <div id="send-transaction">
+           <form id="send-transaction-form">
+               <div>
+                   <span>对方地址</span>
+                   <input type="text" name="toaddress">
+               </div>
+               <div>
+                   <span>发送金额</span>
+                   <input type="text" name="number">
+               </div>
+               <input name="fromaddress" hidden="hidden">
+               <input name="privateKey" hidden="hidden">
+               <button type="submit">发送交易</button>
+           </form>
+        </div>
+        <div id="account-info">
+            <div>
+                <span>账户地址:</span><span id="account-address"></span>
+            </div>
+            <div>
+                <span>账户余额:</span><span id="account-balance"></span>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
