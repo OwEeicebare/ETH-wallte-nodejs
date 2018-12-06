@@ -49,6 +49,10 @@
                <div>
                    <span>发送金额</span>
                    <input type="text" name="number">
+                   <select id="send-token-kind">
+                       <option value="1">ETH</option>
+                       <option value="2" id="token-kind">MLGB</option>
+                   </select>
                </div>
                <input name="fromaddress" hidden="hidden">
                <input name="privateKey" hidden="hidden">
@@ -61,6 +65,21 @@
             </div>
             <div>
                 <span>账户余额:</span><span id="account-balance"></span>
+                <br>
+                <span>代币余额</span>
+                <span id="account-token-info"></span>
+            </div>
+        </div>
+
+        <div id="transaction-complate" style="display: none">
+            <div>
+
+                <span> <h2>交易 hash :</h2></span>
+                <span id="transaction-complate-hash"></span>
+            </div>
+            <div>
+                <span><h2>区块 hash :</h2></span>
+                <span id="transaction-complate-blockhash"></span>
             </div>
         </div>
     </div>

@@ -11,5 +11,12 @@ module.exports = {
         let web3 = new Web3(provider);
 
         return web3
-    }
-}
+    },
+    fail:(msg)=>{
+        return responseData={
+            code:1,
+            status:"fail",
+            msg:msg
+        }
+
+    }}

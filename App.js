@@ -1,4 +1,4 @@
-let koa = require("koa");
+let koa = require("koa")
 let app = new koa();
 let router = require("./router/router");
 let path = require("path");

@@ -2,10 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>创建钱包</title>
+    <title>查询交易详情</title>
     <script src="js/lib/jquery-3.3.1.min.js"></script>
     <script src="/js/lib/jquery.url.js"></script>
     <script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
+    <script src="js/lib/jqurey.from.js"></script>
     <script src="/js/wallet.js"></script>
 </head>
 <body>
@@ -13,16 +14,13 @@
 <script>
     $("#nav").load("html/nav.html")
 </script>
+<div id="main">
+    <h1>查询交易详情</h1>
 
-<div id="save-keystore">
-    <h1>保存你的密钥</h1>
-    <a href="<%= downloadurl %>">下载密钥文件</a></br>
-    <button onclick="saveKeystoreNext()">下一步</button>
-</div>
-<div id="save-privatekey" style="display: none">
-    <h1>保存你的私钥</h1>
-    <div><%= privatekey %></div>
-</div>
+       <input type="text" id="transaction-info-hash" placeholder="请输入交易哈希">
+       <button onclick="checkTransaction()">查询</button>
+
+    <pre id="transaction-info"></pre>
 </div>
 </body>
 </html>

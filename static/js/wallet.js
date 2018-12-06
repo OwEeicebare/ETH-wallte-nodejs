@@ -1,3 +1,5 @@
+
+
 function saveKeystoreNext() {
     alert("haha")
     $("#save-privatekey").show()
@@ -36,7 +38,14 @@ $("#unlock").ready(function () {
         },
         submitHandler:function (form) {
             console.log("()()()()()()()")
-            var urlStr = "/sendtransaction"
+            var urlStr
+            let tokenType = $("#send-token-kind").val()
+            if (tokenType ==1){
+                 urlStr = "/sendtransaction"
+            }else {
+                urlStr = "/sendToken"
+            }
+
             alert("urlStr:"+urlStr)
             $(form).ajaxSubmit({
                 url:urlStr,
@@ -44,6 +53,11 @@ $("#unlock").ready(function () {
                 dataType:"json",
                 success:function (res, status) {
                     console.log(status+JSON.stringify(res))
+                    if (res.code==0){
+                        $("#transaction-complate-hash").text(res.data.transactionHash)
+                        $("#transaction-complate-blockhash").text(res.data.blockHash)
+                        $("#transaction-complate").show()
+                    }
                 },
                 error:function (res, status) {
                     console.log(status+JSON.stringify(res))
@@ -69,6 +83,20 @@ function unlockAccountWithPrivatekey() {
 
             $("input[name=fromaddress]").val(res.data.balance2)
             $("input[name=privateKey]").val(res.data.privateKey)
+
+            $("#account-token-info").text(res.data.tokenbalance+"  "+res.data.tokenname)
+            $("#token-kind").text(res.data.tokenname)
+        }
+    })
+}
+
+function checkTransaction() {
+    let hash = $("#transaction-info-hash").val();
+    console.log(hash)
+    $.post("/checktransaction",`hash=${hash}`, function (data, status) {
+        console.log(status+JSON.stringify(data))
+        if (data.code == 0){
+            $("#transaction-info").text(JSON.stringify(data.data,null,4))
         }
     })
 }
@@ -104,6 +132,9 @@ function unlockAccountWithkeystore() {
 
                 $("input[name=fromaddress]").val(res.data.balance2)
                 $("input[name=privateKey]").val(res.data.privateKey)
+
+                $("#account-token-info").text(res.data.tokenbalance+"  "+res.data.tokenname)
+                $("#token-kind").text(res.data.tokenname)
             }
             },
         error:function (data, status) {
